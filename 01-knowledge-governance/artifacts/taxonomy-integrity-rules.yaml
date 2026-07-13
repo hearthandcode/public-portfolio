@@ -1,0 +1,132 @@
+# Public-safe taxonomy integrity rules
+#
+# A concise derivative of a private rule registry. The rules are portable,
+# machine-readable design constraints. This file does not claim that a public
+# validator or plugin is installed or running.
+
+version: "public-1.0"
+status: pilot
+updated: 2026-07-13
+kind: public-safe-derivative
+maturity: validation_design
+verified: false
+source_treatment: "Derived from a reviewed private rule registry; internal runtime and repository references are withheld."
+
+purpose:
+  summary: "Make a small set of taxonomy quality checks explicit and reviewable."
+  non_claims:
+    - "This is not a deployed validation service."
+    - "A rule declaration does not prove that every artifact currently conforms."
+    - "Semantic and legal judgments remain human review responsibilities."
+
+rule_types:
+  parseable_yaml: "The artifact can be parsed as YAML."
+  presence: "A required field exists and is non-empty."
+  uniqueness: "A value is unique within a named collection."
+  membership: "A value belongs to an allowed vocabulary."
+  cross_reference: "A relationship refers to an existing term or scheme."
+  graph_acyclic: "A hierarchy contains no cycles."
+  reachability: "An external reference can be checked for basic availability."
+  deferred: "A judgment requires human interpretation or context beyond this schema."
+
+standards_basis:
+  okf: "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md"
+  skos: "https://www.w3.org/TR/skos-primer/"
+  iso_25964: "https://www.niso.org/standards-committees/iso-25964"
+  dublin_core: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/"
+  records_in_contexts: "https://www.ica.org/ica-network/expert-groups/egad/records-in-contexts-conceptual-model/"
+  coala: "https://arxiv.org/abs/2309.02427"
+
+rules:
+  - id: TAX-001
+    type: parseable_yaml
+    target: self
+    severity: block
+    description: "The taxonomy artifact must parse as YAML."
+
+  - id: TAX-002
+    type: presence
+    target: terms
+    fields: [pref_label, definition, scope_note, scheme, status, evidence_state]
+    severity: block
+    description: "Each public term requires a label, definition, scope, scheme, lifecycle status, and evidence state."
+
+  - id: TAX-003
+    type: uniqueness
+    target: terms
+    field: pref_label
+    ignore_case: true
+    severity: block
+    description: "Preferred labels must be unique."
+
+  - id: TAX-004
+    type: membership
+    target: terms
+    field: scheme
+    allowed_from: concept_schemes
+    severity: block
+    description: "Each term must name an existing concept scheme."
+
+  - id: TAX-005
+    type: membership
+    target: terms
+    field: evidence_state
+    allowed_from: controlled_values.evidence_states
+    severity: warn
+    description: "Evidence states must use the controlled vocabulary."
+
+  - id: TAX-006
+    type: membership
+    target: terms
+    field: status
+    allowed_from: controlled_values.lifecycle_statuses
+    severity: warn
+    description: "Lifecycle statuses must use the controlled vocabulary."
+
+  - id: TAX-007
+    type: cross_reference
+    target: terms
+    fields: [related]
+    allowed_from: terms
+    severity: warn
+    description: "Term relationships should resolve to existing term keys."
+
+  - id: TAX-008
+    type: graph_acyclic
+    target: terms
+    field: broader
+    severity: block
+    description: "Any broader and narrower hierarchy must not contain cycles."
+
+  - id: TAX-009
+    type: reachability
+    target: external_sources
+    field: source_refs
+    method: HEAD
+    timeout_seconds: 5
+    severity: info
+    description: "Public external citations can be checked for basic availability."
+
+  - id: TAX-010
+    type: presence
+    target: published_derivative
+    fields: [source_treatment, maturity, verified]
+    severity: warn
+    description: "A public-safe derivative should disclose its treatment, maturity, and review state."
+
+  - id: TAX-011
+    type: deferred
+    target: semantic_quality
+    severity: info
+    description: "Whether a definition is complete, clear, or appropriately scoped requires human review."
+
+  - id: TAX-012
+    type: deferred
+    target: privacy_review
+    severity: block
+    description: "A reviewer must determine whether a new source reference exposes restricted material before publication."
+
+review_posture:
+  - "Machine-readable checks support review. They do not replace source assessment or human judgment."
+  - "Public artifacts cite public standards or summarize internal work without revealing private paths, personal records, or runtime details."
+  - "A failed or deferred rule is a review signal, not permission to silently rewrite evidence."

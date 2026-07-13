@@ -1,0 +1,12 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.18.2
+    container_name: exocore-contextpack-qdrant
+    restart: "no"
+    ports:
+      - "127.0.0.1:6335:6333"
+    volumes:
+      - contextpack-qdrant:/qdrant/storage
+
+volumes:
+  contextpack-qdrant:

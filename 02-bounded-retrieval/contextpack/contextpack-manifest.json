@@ -1,0 +1,37 @@
+{
+  "manifest_version": "1.0",
+  "source_root": "../..",
+  "runtime_root": ".exocore-contextpacks",
+  "include": [
+    "README.md",
+    "architecture/*.md",
+    "features/*.md",
+    "docs/**/*.md",
+    "plans/*.md",
+    "specs/*.md",
+    "references/*.md",
+    "review/*.md",
+    "workflows/*.md",
+    "decisions/*.md",
+    "receipts/*.md"
+  ],
+  "exclude": [
+    "**/AGENTS.md",
+    ".hermes.md",
+    "skills/**",
+    "tools/**",
+    ".exocore-contextpack/**",
+    "research/staging/**",
+    "**/.git/**",
+    "**/.env*",
+    "**/*credential*",
+    "**/*secret*",
+    "**/*token*"
+  ],
+  "chunk_max_chars": 2600,
+  "default_pack_budget_chars": 11000,
+  "qdrant": {
+    "url": "http://127.0.0.1:6335",
+    "collection": "exocore_harness_contextpack_v1"
+  }
+}

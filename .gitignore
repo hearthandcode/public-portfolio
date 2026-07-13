@@ -1,0 +1,30 @@
+# Generated Python files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local ContextPack output and local service state
+.exocore-contextpacks/
+qdrant_storage/
+
+# Credentials and local runtime configuration
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.sample
+*.key
+*.pem
+*.p12
+.mcp.json
+.cursor/mcp.json
+
+# Local databases and logs
+*.db
+*.db-wal
+*.log
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/

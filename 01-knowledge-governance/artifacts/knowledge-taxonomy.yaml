@@ -1,0 +1,238 @@
+# Public-safe knowledge taxonomy
+#
+# A concise derivative of a private working registry. It retains the portable
+# vocabulary and relationship model while omitting internal paths, personal
+# records, contributor identities, runtime configuration, and workflow routing.
+
+version: "public-0.1"
+status: pilot
+updated: 2026-07-13
+kind: public-safe-derivative
+maturity: pilot_design
+verified: false
+
+purpose:
+  summary: "A controlled vocabulary for file-primary knowledge work."
+  boundary:
+    - "This is a vocabulary and relationship model, not a full ontology."
+    - "It does not grant access to private material or authorize ingestion."
+    - "It describes design conventions, not a deployed product capability."
+  source_treatment: "Derived from a reviewed private registry; internal locations and source records are withheld."
+
+standards_basis:
+  skos:
+    role: "Concept schemes, labels, scope notes, and semantic relationships."
+    source: "https://www.w3.org/TR/skos-primer/"
+  iso_25964:
+    role: "Vocabulary governance and mapping practice."
+    source: "https://www.niso.org/standards-committees/iso-25964"
+  dublin_core:
+    role: "Portable resource metadata and provenance fields."
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/"
+  records_in_contexts:
+    role: "Records, agents, activities, and provenance."
+    source: "https://www.ica.org/ica-network/expert-groups/egad/records-in-contexts-conceptual-model/"
+  coala:
+    role: "Working, episodic, semantic, and procedural memory categories."
+    source: "https://arxiv.org/abs/2309.02427"
+
+controlled_values:
+  artifact_types:
+    values: [document, reference, decision, workflow, receipt, index]
+  domains:
+    values: [knowledge, research, product, tools, governance]
+  page_types:
+    values: [source, entity, concept, claim, method, comparison, question, workflow, decision, topic-map, index]
+  memory_types:
+    values: [working, episodic, semantic, procedural]
+  evidence_states:
+    values: [unverified, partial, verified, contested, superseded]
+  lifecycle_statuses:
+    values: [proposed, draft, active, reviewed, amended, archived, deprecated, superseded]
+  privacy_tiers:
+    values: [public-safe, internal, restricted, sensitive]
+  relationship_types:
+    values: [about, cites, derived-from, supports, challenges, broader, narrower, related, requires, implements, supersedes, validates]
+
+concept_schemes:
+  knowledge-management:
+    pref_label: "Knowledge management"
+    definition: "Methods and structures for capturing, organizing, verifying, retrieving, and evolving knowledge."
+    top_concepts: [controlled-vocabulary, provenance, evidence-state, privacy-tier]
+  ai-memory-systems:
+    pref_label: "AI memory systems"
+    definition: "Memory architectures and retrieval behavior for AI-supported knowledge work."
+    top_concepts: [working-memory, episodic-memory, semantic-memory, procedural-memory, knowledge-graph]
+  context-engineering:
+    pref_label: "Context engineering"
+    definition: "Selecting, shaping, compressing, routing, and isolating material before it enters a working context."
+    top_concepts: [bounded-retrieval, context-pack]
+  research-methodology:
+    pref_label: "Research methodology"
+    definition: "How claims, evidence, and methods are made legible and reviewable."
+    top_concepts: [provenance, evidence-state]
+
+terms:
+  controlled-vocabulary:
+    pref_label: "Controlled vocabulary"
+    alt_labels: [controlled terms, authorized vocabulary]
+    scheme: knowledge-management
+    definition: "A managed set of terms with definitions, scope notes, relationships, and governance rules."
+    scope_note: "Use when consistency and retrieval matter more than formal logical inference."
+    related: [concept-scheme, taxonomy, provenance]
+    source_refs: ["https://www.w3.org/TR/skos-primer/", "https://www.niso.org/standards-committees/iso-25964"]
+    status: active
+    evidence_state: partial
+
+  concept-scheme:
+    pref_label: "Concept scheme"
+    alt_labels: [SKOS concept scheme]
+    scheme: knowledge-management
+    definition: "A bounded set of concepts with a shared purpose and scope."
+    scope_note: "Use for named vocabularies such as knowledge management or context engineering."
+    related: [controlled-vocabulary, taxonomy]
+    source_refs: ["https://www.w3.org/TR/skos-primer/"]
+    status: active
+    evidence_state: partial
+
+  taxonomy:
+    pref_label: "Taxonomy"
+    alt_labels: [classification hierarchy]
+    scheme: knowledge-management
+    definition: "A structured classification of concepts, usually with broader and narrower relationships."
+    scope_note: "Use for hierarchy and placement, not as a synonym for the whole knowledge system."
+    related: [controlled-vocabulary, concept-scheme]
+    source_refs: ["https://www.niso.org/standards-committees/iso-25964"]
+    status: active
+    evidence_state: partial
+
+  provenance:
+    pref_label: "Provenance"
+    alt_labels: [source lineage]
+    scheme: research-methodology
+    definition: "Information about where an artifact or claim came from and how it changed over time."
+    scope_note: "Keep source and activity references close to claims without exposing restricted source material."
+    related: [evidence-state, privacy-tier]
+    source_refs: ["https://www.ica.org/ica-network/expert-groups/egad/records-in-contexts-conceptual-model/"]
+    status: active
+    evidence_state: partial
+
+  evidence-state:
+    pref_label: "Evidence state"
+    alt_labels: [verification state, trust state]
+    scheme: research-methodology
+    definition: "A label indicating how well a knowledge object or claim has been checked."
+    scope_note: "Use to prevent draft or generated material from silently becoming accepted fact."
+    related: [provenance]
+    status: active
+    evidence_state: partial
+
+  privacy-tier:
+    pref_label: "Privacy tier"
+    alt_labels: [access tier, sensitivity class]
+    scheme: knowledge-management
+    definition: "A classification for whether material may be indexed, shared, summarized, or exposed to tools."
+    scope_note: "Apply before ingestion, retrieval, or publication."
+    related: [provenance]
+    status: active
+    evidence_state: partial
+
+  working-memory:
+    pref_label: "Working memory"
+    alt_labels: [active context, scratchpad]
+    scheme: ai-memory-systems
+    definition: "Current-session context and intermediate state used during an active decision cycle."
+    scope_note: "Promote distilled facts, not raw context sprawl."
+    related: [episodic-memory, context-pack]
+    source_refs: ["https://arxiv.org/abs/2309.02427"]
+    status: active
+    evidence_state: partial
+
+  episodic-memory:
+    pref_label: "Episodic memory"
+    alt_labels: [event memory]
+    scheme: ai-memory-systems
+    definition: "Memory of past sessions, actions, observations, and event sequences."
+    scope_note: "Use for what happened, when, and in what sequence."
+    related: [working-memory, provenance]
+    source_refs: ["https://arxiv.org/abs/2309.02427"]
+    status: active
+    evidence_state: partial
+
+  semantic-memory:
+    pref_label: "Semantic memory"
+    alt_labels: [fact memory, world knowledge]
+    scheme: ai-memory-systems
+    definition: "Memory of facts, concepts, entities, and relationships independent of one episode."
+    scope_note: "Use for reviewed knowledge rather than unverified transcript material."
+    related: [knowledge-graph, provenance]
+    source_refs: ["https://arxiv.org/abs/2309.02427"]
+    status: active
+    evidence_state: partial
+
+  procedural-memory:
+    pref_label: "Procedural memory"
+    alt_labels: [skill memory, how-to memory]
+    scheme: ai-memory-systems
+    definition: "Memory of procedures, rules, code, and workflows for action."
+    scope_note: "Treat changes as reviewable because they influence future behavior."
+    related: [evidence-state]
+    source_refs: ["https://arxiv.org/abs/2309.02427"]
+    status: active
+    evidence_state: partial
+
+  knowledge-graph:
+    pref_label: "Knowledge graph"
+    alt_labels: [KG]
+    scheme: ai-memory-systems
+    definition: "A graph representation of entities, relationships, facts, and optional provenance metadata."
+    scope_note: "Use when relationship traversal matters more than flat text retrieval."
+    related: [semantic-memory, graphrag]
+    status: active
+    evidence_state: partial
+
+  graphrag:
+    pref_label: "GraphRAG"
+    alt_labels: [graph retrieval augmented generation]
+    scheme: ai-memory-systems
+    definition: "A graph-based retrieval approach that uses entities and community summaries for corpus-wide questions."
+    scope_note: "Treat it as a possible research direction, not a capability claim."
+    related: [knowledge-graph, bounded-retrieval]
+    source_refs: ["https://www.microsoft.com/en-us/research/publication/from-local-to-global-a-graph-rag-approach-to-query-focused-summarization/"]
+    status: active
+    evidence_state: partial
+
+  bounded-retrieval:
+    pref_label: "Bounded retrieval"
+    alt_labels: [source-governed retrieval]
+    scheme: context-engineering
+    definition: "Retrieval constrained by an explicit source-selection policy and reviewable provenance."
+    scope_note: "Use when relevance must not override source authority or privacy boundaries."
+    related: [context-pack, provenance, privacy-tier]
+    status: active
+    evidence_state: partial
+
+  context-pack:
+    pref_label: "ContextPack"
+    alt_labels: [bounded context pack]
+    scheme: context-engineering
+    definition: "A bounded assembly of selected source material with visible inclusion, exclusion, and provenance information."
+    scope_note: "A ContextPack supports reviewable context selection. It is not ambient memory or a claim of semantic understanding."
+    related: [bounded-retrieval, working-memory, provenance]
+    status: active
+    evidence_state: partial
+
+  concept-page:
+    pref_label: "Concept page"
+    alt_labels: [concept note, evergreen note]
+    scheme: knowledge-management
+    definition: "A page focused on one reusable idea, its scope, relationships, sources, and review state."
+    scope_note: "Create one when it reduces repeated explanation or supports navigation."
+    related: [controlled-vocabulary, provenance]
+    status: active
+    evidence_state: partial
+
+validation_notes:
+  - "Every public term should have a preferred label, definition, scope note, scheme, lifecycle status, and evidence state."
+  - "Terms can be amended or superseded. A public derivative must not imply that a private source record is publicly available."
+  - "Privacy classification applies before retrieval or publication, not after exposure."

@@ -1,0 +1,31 @@
+portfolio:
+  title: Scott Rallya public portfolio
+  status: release_candidate
+  remote_configured: false
+  public_url_verified: true
+  public_url: https://github.com/hearthandcode/public-portfolio
+  repository_content_published: false
+  release_authorization: granted_pending_final_audit
+  scope: artifact_led_not_application_led
+  domains:
+    - id: knowledge_governance
+      path: 01-knowledge-governance
+      maturity: pilot
+    - id: bounded_retrieval
+      path: 02-bounded-retrieval
+      maturity: working_proof
+    - id: research_methods
+      path: 03-research-methods
+      maturity: draft_methodology
+    - id: ml_boundaries_and_creative_experiments
+      path: 04-ml-boundaries-and-creative-experiments
+      maturity: learning_record
+    - id: exocore_platform
+      path: 05-exocore-platform
+      maturity: proposed_architecture
+  publication_exclusions:
+    - raw_session_transcripts
+    - private_health_or_caregiving_disclosures
+    - credentials_and_runtime_configuration
+    - raw_suno_lyrics
+  verification_rule: "Every directory README distinguishes source copies, public-safe derivatives, and proposed work."
