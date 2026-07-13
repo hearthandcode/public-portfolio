@@ -1,11 +1,11 @@
 portfolio:
   title: Scott Rallya public portfolio
-  status: release_candidate
-  remote_configured: false
+  status: published
+  remote_configured: true
   public_url_verified: true
   public_url: https://github.com/hearthandcode/public-portfolio
-  repository_content_published: false
-  release_authorization: granted_pending_final_audit
+  repository_content_published: true
+  release_authorization: granted_and_released
   scope: artifact_led_not_application_led
   domains:
     - id: knowledge_governance

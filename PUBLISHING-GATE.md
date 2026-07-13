@@ -1,6 +1,6 @@
 # Publication gate
 
-**Release gate:** Scott authorized remote configuration and publication after the final privacy audit passes. The release must preserve the source-treatment, maturity, and privacy boundaries documented in this repository.
+**Release status:** Published to [github.com/hearthandcode/public-portfolio](https://github.com/hearthandcode/public-portfolio) after a final privacy audit. Future changes must preserve the source-treatment, maturity, and privacy boundaries documented in this repository.
 
 ## Required before any public push
 
