@@ -8,7 +8,7 @@
 2. Remove or rewrite anything that exposes private health, caregiving, address, phone number, personal email, or unpublished private workspace paths.
 3. Verify every external URL and every claim of implementation, publication, and public availability.
 4. Keep a clear distinction among public code, public documentation, candidate-authored reflection, and private/unreleased implementation.
-5. Choose a license intentionally. This prose-heavy portfolio has no license yet because a license changes reuse rights.
+5. Confirm that the documented [MIT License](LICENSE) is intentional for the material being added. A license changes reuse rights.
 6. Run a credentials and PII scan before a remote is added or a push occurs.
 
 

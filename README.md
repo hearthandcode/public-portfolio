@@ -6,7 +6,7 @@ A source-led portfolio of bounded engineering proofs, research-method artifacts,
 
 | Directory | Purpose | Maturity |
 | --- | --- | --- |
-| [01-knowledge-governance](01-knowledge-governance/) | Controlled vocabulary and portable validation design for a file-primary knowledge system. | Pilot taxonomy and rule artifacts. |
+| [01-knowledge-governance](01-knowledge-governance/) | Controlled vocabulary, portable validation design, and an [AI-ready knowledge architecture brief](01-knowledge-governance/artifacts/ai-ready-knowledge-architecture.md) for a file-primary knowledge system. | Pilot taxonomy and rule artifacts, plus a public-safe design record. |
 | [02-bounded-retrieval](02-bounded-retrieval/) | Runnable, local-only ContextPack retrieval proof with provenance boundaries. | Working proof, not a product runtime or semantic retrieval system. |
 | [03-research-methods](03-research-methods/) | Public-safe research-method material, coupling criteria, and curated technical reflections. | Draft methodology and individual observations. |
 | [04-ml-boundaries-and-creative-experiments](04-ml-boundaries-and-creative-experiments/) | Explicit boundary between current retrieval work, future ML/RL learning, and a small creative-model artifact. | Learning and design record, not ML research results. |
